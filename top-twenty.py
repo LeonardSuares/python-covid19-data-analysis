@@ -33,6 +33,9 @@ usa_data = read_data(path, files[5])
 print(world_data.columns)
 
 pop_test_ratio = world_data['Population']/world_data['TotalTests'].iloc[0:20]
-fig = px.bar(world_data.iloc[0:20], x='Country/Region', y=pop_test_ratio[0:20], color= 'Country/Region', title='Population to test done ratio')
-fig.show()
+# fig = px.bar(world_data.iloc[0:20], x='Country/Region', y=pop_test_ratio[0:20], color= 'Country/Region', title='Population to test done ratio')
+# fig.show()
 # print(pop_test_ratio)
+
+fig3 = px.bar(world_data.iloc[0:20], x='Country/Region', y=['Serious,Critical','TotalDeaths','TotalRecovered','ActiveCases','TotalCases'])
+fig3.show()
