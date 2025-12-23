@@ -37,5 +37,11 @@ pop_test_ratio = world_data['Population']/world_data['TotalTests'].iloc[0:20]
 # fig.show()
 # print(pop_test_ratio)
 
-fig3 = px.bar(world_data.iloc[0:20], x='Country/Region', y=['Serious,Critical','TotalDeaths','TotalRecovered','ActiveCases','TotalCases'])
-fig3.show()
+# fig3 = px.bar(world_data.iloc[0:20], x='Country/Region', y=['Serious,Critical','TotalDeaths','TotalRecovered','ActiveCases','TotalCases'])
+# fig3.show()
+
+columns = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases']
+for i in columns:
+    fig = px.bar(world_data.sort_values(by=i, ascending = False)[0:20], y='Country/Region', x=i, color=i, text=i)
+    fig.update_layout(template='plotly_dark', title='Top 20 countries by {}'.format(i))
+    fig.show()
