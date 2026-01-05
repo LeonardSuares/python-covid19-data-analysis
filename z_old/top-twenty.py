@@ -25,17 +25,18 @@ def read_data(path, filename):
 
 path = r'C:\Users\leona\PycharmProjects\Python Data Analysis Projects\Covid19-data-analysis\Covid-19-20251222T220640Z-1-001\Covid-19'
 world_data = read_data(path, 'worldometer_data.csv')
-province_data = read_data(path, files[1])
-daywise_data = read_data(path, files[2])
-group_data = read_data(path, files[3])
-full_group_data = read_data(path, files[4])
-usa_data = read_data(path, files[5])
-print(daywise_data.columns)
+group_data = read_data(path, 'full_grouped.csv')
+
+pop_test_ratio = world_data['Population']/world_data['TotalTests'].iloc[0:20]
+# fig = px.bar(world_data.iloc[0:20], x='Country/Region', y=pop_test_ratio[0:20], color= 'Country/Region', title='Population to test done ratio')
+# fig.show()
+# print(pop_test_ratio)
+
+# fig3 = px.bar(world_data.iloc[0:20], x='Country/Region', y=['Serious,Critical','TotalDeaths','TotalRecovered','ActiveCases','TotalCases'])
+# fig3.show()
 
 columns = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases']
 for i in columns:
-    fig = px.treemap(world_data.iloc[0:20], values=i, path=['Country/Region'], title='Treemap representation of different countries w.r.t to their {}'.format(i))
+    fig = px.bar(world_data.sort_values(by=i, ascending = False)[0:20], y='Country/Region', x=i, color=i, text=i)
+    fig.update_layout(template='plotly_dark', title='Top 20 countries by {}'.format(i))
     fig.show()
-
-fig2 = px.line(daywise_data, x='Date', y=['Confirmed', 'Deaths', 'Recovered', 'Active'], title='Covid cases w.r.t to date')
-fig2.show()

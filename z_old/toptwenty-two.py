@@ -26,12 +26,8 @@ def read_data(path, filename):
 
 path = r'C:\Users\leona\PycharmProjects\Python Data Analysis Projects\Covid19-data-analysis\Covid-19-20251222T220640Z-1-001\Covid-19'
 world_data = read_data(path, 'worldometer_data.csv')
-province_data = read_data(path, files[1])
-daywise_data = read_data(path, files[2])
-group_data = read_data(path, files[3])
-full_group_data = read_data(path, files[4])
-usa_data = read_data(path, files[5])
-print(world_data.columns)
+group_data = read_data(path, 'full_grouped.csv')
+
 
 labels = world_data[0:15]['Country/Region'].values
 cases = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases']
